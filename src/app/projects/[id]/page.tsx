@@ -1,4 +1,4 @@
-// app/projects/[id].tsx
+// app/projects/[id]/page.tsx
 import React from "react";
 import Link from "next/link";
 import { readProjectsJson } from '@/lib/read-projects';
@@ -14,18 +14,11 @@ type Project = {
   image: string;
 };
 
-type PageProps = {
-  params: {
-    id: string;
-  };
-};
-
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;
   const projects: Project[] = await readProjectsJson();
 
-  // Cari project berdasarkan id tanpa pakai any, konversi id URL ke angka karena di JSON id bertipe number
-  const project = projects.find((p: Project) => p.id === Number(id));
+  const project = projects.find((p) => p.id === Number(id));
 
   if (!project) {
     return (
@@ -34,10 +27,7 @@ export default async function Page({ params }: PageProps) {
           <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Project not found</h1>
           <p className="mt-3 text-gray-600 dark:text-gray-300">Project dengan ID <strong>{id}</strong> tidak ditemukan.</p>
           <div className="mt-6">
-            <Link
-              href={`/#projects`}
-              className="inline-block px-4 py-2 rounded bg-indigo-600 text-white"
-            >
+            <Link href={`/#projects`} className="inline-block px-4 py-2 rounded bg-indigo-600 text-white">
               Kembali ke Projects
             </Link>
           </div>
