@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* globals.css (pastikan Tailwind base/components/utilities sudah diimport) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom blinking cursor for typewriter */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Responsive tweaks: on small screens, make hero image still cover but text smaller and move under image */
+@media (max-width: 768px) {
+  /* We want the text to be placed over the bottom of the image on small screens.
+     We'll make the hero container behave like a column — but because background covers full viewport,
+     we keep the same structure; reduce font sizes for better fit. */
+  h1 {
+    font-size: 1.8rem; /* approx text-2xl */
+  }
+  h1 + span {
+    font-size: 1.125rem; /* approx text-lg */
+  }
+  .max-w-6xl {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

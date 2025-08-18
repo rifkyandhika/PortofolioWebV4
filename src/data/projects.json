@@ -1,0 +1,141 @@
+[
+  {
+    "id": 1,
+    "title": "Karier Bisnis Indonesia",
+    "summary": "A job search platform for Bisnis Indonesia Group.",
+    "description": "This project is a job search platform specifically designed for the Bisnis Indonesia Group. Similar to other job portals, this site provides information about open positions within the company. Additionally, it features informative content about Bisnis Indonesia, allowing applicants to gain deeper insights into the company and better understand its culture and values.",
+    "tech": ["Next.js", "Boostrap 5", "Node.js", "Postgres"],
+    "role": "Full Stack Developer",
+    "url": "https://karier.bisnisindonesia.id",
+    "views": 342,
+    "year": 2023,
+    "image": "/images/projects/Project5.png",
+    "images": [
+      {
+        "src":"/images/projects/Project5.png", 
+        "alt":"Karier Bisnis Indonesia"
+      },
+      {
+        "src":"/images/projects/Project5.1.png", 
+        "alt":"Karier Bisnis Indonesia"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "CMS Bisnis Indonesia",
+    "summary": "A content recruitment management system for Bisnis Indonesia HR team.",
+    "description": "This project is the Bisnis Indonesia Career CMS page designed for the HR team at Bisnis Indonesia. This CMS manages applicant data inputted through the Bisnis Indonesia Career site, enabling the HR team to assess whether applicants' skills align with the company's needs. Additionally, HR can monitor each stage of the recruitment process. The CMS also includes features for inputting job positions required by the company and creating content that will be displayed on the Bisnis Indonesia Career site.",
+    "tech": ["Next.js", "Boostrap 5", "Node.js", "Postgres"],
+    "role": "Full Stack Developer",
+    "views": 1280,
+    "year": 2023,
+    "image": "/images/projects/Project6.png",
+    "images": [
+      {
+        "src":"/images/projects/Project6.png", 
+        "alt":"Karier Bisnis Indonesia"
+      },
+      {
+        "src":"/images/projects/Project6.1.png", 
+        "alt":"Karier Bisnis Indonesia"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "HRIS Bisnis Indonesia",
+    "summary": "A Human Resource Information System for Bisnis Indonesia HR team.",
+    "description": "This project is an HRIS (Human Resource Information System) application specifically designed for the HR team at Bisnis Indonesia Group. The application offers various features, including employee attendance tracking, payroll data entry, and management of ESS (Employee Self-Service) access for employees. With its comprehensive and integrated features, this application enables the HR team to efficiently manage employee data, ensure information accuracy, and support faster, more transparent administrative processes.",
+    "tech": ["Next.js", "Boostrap 5", "Node.js", "Postgres"],
+    "role": "Full Stack Developer",
+    "views": 980,
+    "year": 2023,
+    "image": "/images/projects/Project8.png",
+    "images": [
+      {
+        "src":"/images/projects/Project8.png", 
+        "alt":"Karier Bisnis Indonesia"
+      },
+      {
+        "src":"/images/projects/Project8.1.png", 
+        "alt":"Karier Bisnis Indonesia"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "ESS Bisnis Indonesia",
+    "summary": "An Employee Self-Service application for Bisnis Indonesia Group employees.",
+    "description": "This project is a web-based Employee Self-Service (ESS) application for employees of the Bisnis Indonesia Group. It provides features such as attendance tracking, leave requests, payroll checking, and other ESS services. With a user-friendly interface and real-time notifications, this application allows employees to independently manage their administrative needs while enabling the HR team to monitor and manage employee data in an integrated manner.",
+    "tech": ["Next.js", "Boostrap 5", "Node.js", "Postgres"],
+    "role": "Full Stack Developer",
+    "views": 765,
+    "year": 2023,
+    "image": "/images/projects/Project7.png",
+    "images": [
+      {
+        "src":"/images/projects/Project7.png", 
+        "alt":"Karier Bisnis Indonesia"
+      },
+      {
+        "src":"/images/projects/Project7.1.png", 
+        "alt":"Karier Bisnis Indonesia"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Web Portofolio V1",
+    "summary": "My first web development project, showcasing my journey and projects.",
+    "description": "This project is my first foray into the world of web development. It's a humble beginning, aimed at sharing insights into my journey as a developer and the experiences gained from web projects. The interface is simple, designed to provide information about myself and the web projects I've undertaken.",
+    "tech": ["HTML"],
+    "role": "Full Stack Developer",
+    "url": "https://rifkyandhika.github.io/PortofolioWebV1/",
+    "repo": "https://github.com/rifkyandhika/PortofolioWebV1",
+    "views": 450,
+    "year": 2021,
+    "image": "/images/projects/Project4.png",
+    "images": [
+      {
+        "src":"/images/projects/Project4.png", 
+        "alt":"Karier Bisnis Indonesia"
+      },
+      {
+        "src":"/images/projects/Project4.1.png", 
+        "alt":"Karier Bisnis Indonesia"
+      },
+      {
+        "src":"/images/projects/Project4.2.png", 
+        "alt":"Karier Bisnis Indonesia"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Dapur Annisa",
+    "summary": "A collaborative project featuring Padang cuisine, focusing on rendang sales.",
+    "description": "This is a collaborative project from Dapur Annisa. The content of this website features the sale of typical Padang cuisine, specifically rendang. With a design characterized by rendang colors, the website signifies its primary focus on selling rendang dishes.",
+    "tech": ["HTML", "Boostrap 4"],
+    "role": "Full Stack Developer",
+    "url": "https://rifkyandhika.github.io/DapurAnnisaa/",
+    "repo": "https://github.com/rifkyandhika/DapurAnnisaa",
+    "views": 230,
+    "year": 2021,
+    "image": "/images/projects/Project1.png",
+    "images": [
+      {
+        "src":"/images/projects/Project1.png", 
+        "alt":"Karier Bisnis Indonesia"
+      },
+      {
+        "src":"/images/projects/Project1.1.png", 
+        "alt":"Karier Bisnis Indonesia"
+      },
+      {
+        "src":"/images/projects/Project1.2.png", 
+        "alt":"Karier Bisnis Indonesia"
+      }
+    ]
+  }
+]
