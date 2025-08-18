@@ -14,8 +14,11 @@ type Project = {
   image: string;
 };
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const awaitedParams = await params;
+  const { id } = awaitedParams;
+  
+  // Now you can safely use id
   const projects: Project[] = await readProjectsJson();
 
   const project = projects.find((p) => p.id === Number(id));
