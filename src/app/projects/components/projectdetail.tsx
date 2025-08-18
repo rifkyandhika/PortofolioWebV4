@@ -13,7 +13,7 @@ type Project = {
   url?: string;
   repo?: string;
   cover?: string;
-  images?: string[]; // optional gallery
+  images?: { src: string; alt?: string }[]; // gallery images as objects
   views?: number;
   date?: string;
   role?: string;
