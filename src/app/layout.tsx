@@ -3,6 +3,7 @@ import './globals.css';
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next'
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { GoogleTagManager } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.rifkyandhikam.my.id/'),
@@ -35,11 +36,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="id">
+      <GoogleTagManager gtmId="G-QFMVBLEYKL" />
       <body className="bg-white text-gray-900 antialiased">
         <div className="min-h-screen flex flex-col">
           <main className="flex-1">
             {children}
-            <SpeedInsights/>
+            <SpeedInsights />
           </main>
         </div>
       </body>
