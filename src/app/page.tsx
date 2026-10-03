@@ -1,27 +1,22 @@
 // app/page.tsx
 import React from "react";
-import Hero from "../components/hero";
-import About from "../components/about";
-import Experience from "../components/experience";
-import Project from "../components/project";
-import ContactMe from "../components/contactme";
+import Navbar from "./components/navbar";
+import Hero from "./components/hero";
+import About from "./components/about";
+import Experience from "./components/experience";
+import Project from "./components/project";
+import ContactMe from "./components/contactme";
+import Certificates from "./components/certificates";
 
 export default function Page() {
   return (
     <main>
-      {/* Hero full-screen (satu layar penuh) */}
+      <Navbar /> {/* <-- Tambahkan ini */}
       <Hero />
-
-      {/* Konten setelah hero — minimal untuk demo */}
       <About />
-
-      {/* Pengalaman kerja */}
       <Experience />
-
-      {/* Projects */}
       <Project />
-
-      {/* Contact Me */}
+      {/* <Certificates /> */}
       <ContactMe />
     </main>
   );

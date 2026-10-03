@@ -1,9 +1,10 @@
 // app/src/layout.tsx
-import './globals.css';
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next'
+import './globals.css';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { GoogleTagManager } from '@next/third-parties/google'
+import { Providers } from './providers'; // Sesuaikan path jika berbeda
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.rifkyandhikam.my.id/'),
@@ -35,15 +36,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="id">
+    // Tambahkan scroll-smooth dan scroll-pt-20
+    <html lang="id" className="scroll-smooth scroll-pt-20" suppressHydrationWarning>
       <GoogleTagManager gtmId="G-QFMVBLEYKL" />
-      <body className="bg-white text-gray-900 antialiased">
-        <div className="min-h-screen flex flex-col">
-          <main className="flex-1">
-            {children}
-            <SpeedInsights />
-          </main>
-        </div>
+      <body className="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 antialiased transition-colors duration-300">
+        <Providers>
+          <div className="min-h-screen flex flex-col">
+            <main className="flex-1">
+              {children}
+              <SpeedInsights />
+            </main>
+          </div>
+        </Providers>
       </body>
     </html>
   );

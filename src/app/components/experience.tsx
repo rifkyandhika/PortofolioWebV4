@@ -37,7 +37,7 @@ export default function Experience({
             {items.map((exp, idx) => (
               <article
                 key={idx}
-                className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 bg-gradient-to-r from-white to-indigo-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow"
+                className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 bg-gradient-to-r from-white to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow"
               >
                 <div className="w-full sm:w-40 flex-shrink-0">
                   <div className="text-sm text-gray-500 dark:text-gray-400 font-medium">{exp.period}</div>
@@ -58,7 +58,7 @@ export default function Experience({
 
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{exp.title}</h3>
-                        <div className="text-sm text-indigo-600 font-medium">{exp.company}</div>
+                        <div className="text-sm text-blue-600 font-medium">{exp.company}</div>
                       </div>
                     </div>
 
@@ -68,7 +68,7 @@ export default function Experience({
                   <p className="mt-3 text-gray-700 dark:text-gray-300 leading-relaxed text-sm">{exp.description}</p>
 
                   <div className="mt-4 flex flex-wrap gap-3">
-                    <span className="text-xs px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300">
+                    <span className="text-xs px-3 py-1 rounded-full bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300">
                       {exp.period.split(" - ")[0]}
                     </span>
                     <a

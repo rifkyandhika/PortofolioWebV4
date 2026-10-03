@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "title": "Full-Stack Web Development Bootcamp",
+    "issuer": "Dicoding Indonesia",
+    "date": "Agustus 2023",
+    "credentialId": "DIC-2023-8910",
+    "url": "#",
+    "image": "https://placehold.co/800x600/e2e8f0/475569?text=Sertifikat+Utama",
+    "images": [
+      {
+        "src": "https://placehold.co/800x600/e2e8f0/475569?text=Sertifikat+Utama",
+        "alt": "Halaman Depan (Sertifikat)"
+      },
+      {
+        "src": "https://placehold.co/800x600/e2e8f0/475569?text=Transkrip+Nilai",
+        "alt": "Transkrip Nilai & Materi"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "PostgreSQL Database Management Professional",
+    "issuer": "Udemy",
+    "date": "Oktober 2023",
+    "credentialId": "UC-872b83c2",
+    "url": "#",
+    "image": "https://placehold.co/600x800/e2e8f0/475569?text=Piagam+Portrait+1"
+  },
+  {
+    "id": 3,
+    "title": "Next.js & React Advanced Concepts",
+    "issuer": "Coursera",
+    "date": "Desember 2023",
+    "credentialId": "COUR-44521",
+    "url": "#",
+    "image": "https://placehold.co/800x600/e2e8f0/475569?text=Sertifikat+Landscape+2"
+  },
+  {
+    "id": 4,
+    "title": "Best Employee of The Year 2023",
+    "issuer": "PT. Jurnalindo Aksara Grafika",
+    "date": "Januari 2024",
+    "credentialId": "-",
+    "url": "#",
+    "image": "https://placehold.co/600x900/e2e8f0/475569?text=Penghargaan+Portrait+1"
+  },
+  {
+    "id": 5,
+    "title": "RESTful API Development with Node.js & Express",
+    "issuer": "Hacktiv8",
+    "date": "Maret 2024",
+    "credentialId": "H8-API-2299",
+    "url": "#",
+    "image": "https://placehold.co/800x600/e2e8f0/475569?text=Sertifikat+Landscape+3"
+  },
+  {
+    "id": 6,
+    "title": "Frontend UI/UX Design Principles",
+    "issuer": "BuildWithAngga",
+    "date": "Mei 2024",
+    "credentialId": "BWA-UI-0012",
+    "url": "#",
+    "image": "https://placehold.co/800x600/e2e8f0/475569?text=Sertifikat+Landscape+4"
+  },
+  {
+    "id": 7,
+    "title": "Certificate of Competence: Software Engineering",
+    "issuer": "BNSP (Badan Nasional Sertifikasi Profesi)",
+    "date": "Agustus 2024",
+    "credentialId": "BNSP-SE-998821",
+    "url": "#",
+    "image": "https://placehold.co/600x850/e2e8f0/475569?text=Sertifikat+Portrait+Utama",
+    "images": [
+      {
+        "src": "https://placehold.co/600x850/e2e8f0/475569?text=Sertifikat+Portrait+Utama",
+        "alt": "Sertifikat Kompetensi"
+      },
+      {
+        "src": "https://placehold.co/600x850/e2e8f0/475569?text=Unit+Kompetensi",
+        "alt": "Daftar Unit Kompetensi"
+      },
+      {
+        "src": "https://placehold.co/800x600/e2e8f0/475569?text=Surat+Keterangan+Lulus",
+        "alt": "Surat Keterangan Tambahan (Landscape)"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "First Winner - Internal HRIS Hackathon",
+    "issuer": "Bisnis Indonesia Group",
+    "date": "September 2024",
+    "credentialId": "-",
+    "url": "#",
+    "image": "https://placehold.co/800x600/e2e8f0/475569?text=Sertifikat+Landscape+5"
+  },
+  {
+    "id": 9,
+    "title": "TypeScript for Professional Enterprise Apps",
+    "issuer": "Frontend Masters",
+    "date": "Januari 2025",
+    "credentialId": "FM-TS-3444",
+    "url": "#",
+    "image": "https://placehold.co/800x600/e2e8f0/475569?text=Sertifikat+Landscape+6"
+  }
+]

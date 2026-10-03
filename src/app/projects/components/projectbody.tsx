@@ -1,13 +1,12 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 type Project = {
   title: string;
-  short?: string;
   description?: string;
   tech?: string[];
-  url?: string;
-  repo?: string;
   images?: { src: string; alt?: string }[];
   role?: string;
   year?: string;
@@ -18,138 +17,151 @@ type Props = {
 };
 
 export default function ProjectBody({ project }: Props) {
-  const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activeImage, setActiveImage] = useState<number | null>(null);
+  const gallery = project.images ?? [];
+  const lightboxOpen = activeImage !== null;
 
   function openLightbox(index: number) {
     setActiveImage(index);
-    setLightboxOpen(true);
-    // prevent body scroll when modal open
-    if (typeof document !== "undefined") {
-      document.body.style.overflow = "hidden";
-    }
   }
 
   function closeLightbox() {
     setActiveImage(null);
-    setLightboxOpen(false);
-    if (typeof document !== "undefined") {
-      document.body.style.overflow = "";
-    }
   }
 
   function goNext() {
-    if (!project.images || project.images.length === 0 || activeImage === null) return;
-    setActiveImage((curr) => {
-      if (curr === null) return 0;
-      return (curr + 1) % project.images!.length;
-    });
+    if (activeImage === null || gallery.length === 0) return;
+    setActiveImage((prev) => (prev! + 1) % gallery.length);
   }
 
   function goPrev() {
-    if (!project.images || project.images.length === 0 || activeImage === null) return;
-    setActiveImage((curr) => {
-      if (curr === null) return 0;
-      return (curr - 1 + project.images!.length) % project.images!.length;
-    });
+    if (activeImage === null || gallery.length === 0) return;
+    setActiveImage((prev) => (prev! - 1 + gallery.length) % gallery.length);
   }
 
-  // keyboard navigation: Escape, ArrowLeft, ArrowRight
   useEffect(() => {
-    function onKey(e: KeyboardEvent) {
+    if (lightboxOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+
+    const onKey = (e: KeyboardEvent) => {
       if (!lightboxOpen) return;
-      if (e.key === "Escape") {
-        closeLightbox();
-      } else if (e.key === "ArrowRight") {
-        goNext();
-      } else if (e.key === "ArrowLeft") {
-        goPrev();
-      }
-    }
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
+    };
+
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [lightboxOpen, activeImage, project.images]);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [lightboxOpen, gallery.length]);
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 space-y-8">
+        
+        {/* Kolom Kiri: Overview & Screenshots */}
+        <div className="lg:col-span-2 space-y-10">
           <section>
-            <h2 className="text-lg font-semibold text-indigo-200">Overview</h2>
-            <div className="mt-3 text-base text-slate-100/95 leading-relaxed">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700 pb-2">
+              Project Overview
+            </h2>
+            <div className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
               {project.description ? (
                 <p>{project.description}</p>
               ) : (
-                <p className="text-slate-300">No overview provided.</p>
+                <p className="text-slate-500 italic">No overview provided.</p>
               )}
             </div>
           </section>
 
           <section>
-            <h3 className="text-lg font-semibold text-indigo-200">Sneak Peek</h3>
-
-            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {(project.images ?? []).length === 0 && (
-                <div className="col-span-full text-slate-400">No images available.</div>
-              )}
-
-              {(project.images ?? []).map((img, idx) => (
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700 pb-2 mb-4">
+              Screenshots
+            </h2>
+            
+            {gallery.length === 0 ? (
+              <div className="p-8 text-center bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-500">
+                No screenshots available.
+              </div>
+            ) : (
+              <>
+                {/* Gambar Utama (Cover) */}
                 <button
-                  key={img.src + "-" + idx}
-                  onClick={() => openLightbox(idx)}
-                  className="relative group overflow-hidden rounded-lg bg-slate-800/40 border border-slate-700 hover:scale-105 transition-transform"
-                  aria-label={`Open image ${idx + 1}`}
+                  onClick={() => openLightbox(0)}
+                  className="w-full relative group overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 transition-all hover:border-blue-400 dark:hover:border-blue-500 cursor-zoom-in aspect-video"
                 >
-                  <div className="aspect-[16/10] relative">
-                    <Image
-                      src={img.src}
-                      alt={img.alt ?? `${project.title} screenshot ${idx + 1}`}
-                      fill
-                      className="object-cover group-hover:brightness-90 transition-all"
-                    />
-                  </div>
-
-                  <div className="absolute bottom-2 left-2 right-2">
-                    <div className="text-xs text-slate-200/90 bg-black/30 backdrop-blur-sm px-2 py-1 rounded">
-                      View
-                    </div>
+                  <Image
+                    src={gallery[0].src}
+                    alt={gallery[0].alt ?? "Main Screenshot"}
+                    fill
+                    className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 dark:group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                    <span className="opacity-0 group-hover:opacity-100 bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white px-5 py-2.5 rounded-full text-sm font-medium shadow-xl transition-all translate-y-4 group-hover:translate-y-0">
+                      🔍 Enlarge Image
+                    </span>
                   </div>
                 </button>
-              ))}
-            </div>
+
+                {/* Deretan Thumbnail */}
+                {gallery.length > 1 && (
+                  <div className="mt-3 grid grid-cols-3 sm:grid-cols-4 gap-3">
+                    {gallery.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => openLightbox(idx)}
+                        className={`relative overflow-hidden rounded-lg border-2 transition-all aspect-video ${
+                          activeImage === idx 
+                            ? "border-blue-500 opacity-100" 
+                            : "border-slate-200 dark:border-slate-700 opacity-70 hover:opacity-100 hover:border-blue-300 dark:hover:border-blue-600"
+                        }`}
+                      >
+                        <Image src={img.src} alt={img.alt ?? `Thumbnail ${idx + 1}`} fill className="object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
           </section>
         </div>
 
+        {/* Kolom Kanan: Project Info Sidebar */}
         <aside>
-          <div className="sticky top-24">
-            <div className="p-5 rounded-xl bg-slate-800/60 border border-slate-700 shadow-sm">
-              <h4 className="text-sm font-medium text-indigo-100">Project Info</h4>
+          <div className="sticky top-28">
+            <div className="p-6 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 shadow-sm">
+              <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider mb-5">
+                Tech Stack & Info
+              </h3>
 
-              <div className="mt-3 space-y-3 text-sm text-slate-200">
+              <div className="space-y-5 text-sm">
                 <div>
-                  <div className="text-xs text-slate-400">Role</div>
-                  <div className="mt-1 font-semibold">{project.role ?? "—"}</div>
+                  <div className="text-slate-500 dark:text-slate-400 mb-1">Role</div>
+                  <div className="font-semibold text-slate-900 dark:text-white">{project.role ?? "—"}</div>
                 </div>
 
                 <div>
-                  <div className="text-xs text-slate-400">Year</div>
-                  <div className="mt-1">{project.year ?? "—"}</div>
+                  <div className="text-slate-500 dark:text-slate-400 mb-1">Year</div>
+                  <div className="font-semibold text-slate-900 dark:text-white">{project.year ?? "—"}</div>
                 </div>
 
                 <div>
-                  <div className="text-xs text-slate-400">Tech</div>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {(project.tech ?? []).length === 0 && (
-                      <span className="text-slate-400">No tech listed</span>
+                  <div className="text-slate-500 dark:text-slate-400 mb-2">Technologies</div>
+                  <div className="flex flex-wrap gap-2">
+                    {(project.tech ?? []).length === 0 ? (
+                      <span className="text-slate-500">Not specified</span>
+                    ) : (
+                      (project.tech ?? []).map((t) => (
+                        <span
+                          key={t}
+                          className="px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded text-xs font-medium text-slate-700 dark:text-slate-300 shadow-sm"
+                        >
+                          {t}
+                        </span>
+                      ))
                     )}
-                    {(project.tech ?? []).map((t) => (
-                      <span
-                        key={t}
-                        className="px-2 py-1 bg-slate-700/50 text-xs rounded-full text-slate-100"
-                      >
-                        {t}
-                      </span>
-                    ))}
                   </div>
                 </div>
               </div>
@@ -158,57 +170,63 @@ export default function ProjectBody({ project }: Props) {
         </aside>
       </div>
 
-      {/* Lightbox / modal with prev/next */}
-      {lightboxOpen && activeImage !== null && (
+      {/* Lightbox Modal / Fullscreen View */}
+      {lightboxOpen && gallery.length > 0 && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 transition-opacity"
           role="dialog"
           aria-modal="true"
           onClick={closeLightbox}
         >
           <div
-            className="max-w-4xl w-full relative rounded-lg overflow-hidden"
-            onClick={(e) => e.stopPropagation()} // prevent backdrop click when interacting inside
+            className="max-w-6xl w-full max-h-[90vh] relative flex flex-col items-center animate-fade-in"
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
             <button
               onClick={closeLightbox}
-              className="absolute right-3 top-3 z-20 rounded-full bg-black/50 text-white p-2 hover:bg-black/60"
-              aria-label="Close"
+              className="absolute -top-12 right-0 md:-right-10 md:-top-0 z-30 rounded-full bg-white/10 hover:bg-white/20 text-white p-3 transition-colors"
+              aria-label="Close modal"
             >
               ✕
             </button>
 
-            {/* Prev button */}
-            <button
-              onClick={goPrev}
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 z-20 rounded-full bg-black/50 text-white p-2 hover:bg-black/60"
-              aria-label="Previous image"
-            >
-              ◀
-            </button>
+            {gallery.length > 1 && (
+              <>
+                <button
+                  onClick={goPrev}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-30 rounded-full bg-black/60 hover:bg-black/90 text-white p-3 sm:p-4 transition-colors"
+                  aria-label="Previous image"
+                >
+                  ◀
+                </button>
+                <button
+                  onClick={goNext}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-30 rounded-full bg-black/60 hover:bg-black/90 text-white p-3 sm:p-4 transition-colors"
+                  aria-label="Next image"
+                >
+                  ▶
+                </button>
+              </>
+            )}
 
-            {/* Next button */}
-            <button
-              onClick={goNext}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 rounded-full bg-black/50 text-white p-2 hover:bg-black/60"
-              aria-label="Next image"
-            >
-              ▶
-            </button>
-
-            <div className="aspect-[16/10] relative bg-slate-900">
+            <div className="relative w-full h-[75vh] sm:h-[85vh]">
               <Image
-                src={project.images?.[activeImage].src ?? ""}
-                alt={project.images?.[activeImage].alt ?? `Image ${activeImage + 1}`}
+                src={gallery[activeImage!].src}
+                alt={gallery[activeImage!].alt ?? `Screenshot ${activeImage! + 1}`}
                 fill
-                className="object-contain"
+                className="object-contain rounded-lg shadow-2xl"
               />
             </div>
-
-            {project.images?.[activeImage].alt && (
-              <div className="p-3 bg-slate-800/70 text-slate-200 text-sm">
-                {project.images?.[activeImage].alt}
+            
+            {gallery[activeImage!].alt && (
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm text-center">
+                {gallery[activeImage!].alt}
+              </div>
+            )}
+            
+            {gallery.length > 1 && (
+              <div className="absolute top-4 left-4 bg-black/60 text-white px-3 py-1 rounded text-xs font-medium tracking-widest backdrop-blur-sm">
+                {activeImage! + 1} / {gallery.length}
               </div>
             )}
           </div>
